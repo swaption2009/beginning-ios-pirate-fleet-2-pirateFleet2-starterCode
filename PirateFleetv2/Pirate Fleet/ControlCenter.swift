@@ -42,11 +42,9 @@ struct Ship {
         for x in hitTracker.cellsHit {
             if x.1 == false {
                 return false
-            } else {
-                return true
             }
         }
-        return false
+        return true
     }
 
 // TODO: Add custom initializers
@@ -94,10 +92,10 @@ struct Mine: PenaltyCell {
         self.penaltyText = "Yikes!"
     }
     
-    init(location: GridLocation, guaranteesHit: Bool) {
+    init(location: GridLocation, penaltyText: String) {
         self.location = location
-        self.guaranteesHit = guaranteesHit
-        self.penaltyText = "Yikes!"
+        self.guaranteesHit = false
+        self.penaltyText = penaltyText
     }
     
     init(location: GridLocation, guaranteesHit: Bool, penaltyText: String) {
@@ -126,25 +124,39 @@ class ControlCenter {
         
         let smallShip = Ship(length: 2, location: GridLocation(x: 3, y: 4), isVertical: true, isWooden: false)
         human.addShipToGrid(smallShip)
-//        print(smallShip.cells)
         
-        let mediumShip1 = Ship(length: 3, location: GridLocation(x: 0, y: 0), isVertical: false, isWooden: false)
-        human.addShipToGrid(mediumShip1)
+//        replaced by customShip1
+//        let mediumShip1 = Ship(length: 3, location: GridLocation(x: 0, y: 0), isVertical: false, isWooden: false)
+//        human.addShipToGrid(mediumShip1)
         
         let mediumShip2 = Ship(length: 3, location: GridLocation(x: 3, y: 1), isVertical: false, isWooden: false)
         human.addShipToGrid(mediumShip2)
-        
-        let largeShip = Ship(length: 4, location: GridLocation(x: 6, y: 3), isVertical: true, isWooden: false)
-        human.addShipToGrid(largeShip)
+
+//        replaced by customShip2
+//        let largeShip = Ship(length: 4, location: GridLocation(x: 6, y: 3), isVertical: true, isWooden: false)
+//        human.addShipToGrid(largeShip)
         
         let xLargeShip = Ship(length: 5, location: GridLocation(x: 7, y: 2), isVertical: true, isWooden: true)
         human.addShipToGrid(xLargeShip)
         
-        let mine1 = Mine(location: GridLocation(x: 6, y: 0), guaranteesHit: true, penaltyText: "Damn!")
-        human.addMineToGrid(mine1)
+        let customShip1 = Ship(length: 3, location: GridLocation(x: 0, y: 0), isVertical: false, isWooden: true)
+        human.addShipToGrid(customShip1)
         
-        let mine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteesHit: false, penaltyText: "What!")
-        human.addMineToGrid(mine2)
+        let customShip2 = Ship(length: 4, location: GridLocation(x: 6, y: 3), isVertical: true)
+        human.addShipToGrid(customShip2)
+
+//        replaced by customMine1 & customMine2
+//        let mine1 = Mine(location: GridLocation(x: 6, y: 0))
+//        human.addMineToGrid(mine1)
+//        
+//        let mine2 = Mine(location: GridLocation(x: 3, y: 3))
+//        human.addMineToGrid(mine2)
+        
+        let customMine1 = Mine(location: GridLocation(x: 6, y: 0), penaltyText: "Damn!")
+        human.addMineToGrid(customMine1)
+        
+        let customMine2 = Mine(location: GridLocation(x: 3, y: 3), guaranteesHit: false, penaltyText: "What!")
+        human.addMineToGrid(customMine2)
         
         let seamonster1 = SeaMonster(location: GridLocation(x: 5, y: 6))
         human.addSeamonsterToGrid(seamonster1)
