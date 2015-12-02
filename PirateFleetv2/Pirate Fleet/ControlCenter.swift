@@ -76,19 +76,36 @@ struct Ship {
 }
 
 // TODO: Change Cell protocol to PenaltyCell and add the desired properties
-protocol Cell {
+protocol PenaltyCell {
     var location: GridLocation {get}
+    var guaranteesHit: Bool {get set}
+    var penaltyText: String {get}
 }
 
 // TODO: Adopt and implement the PenaltyCell protocol
-struct Mine: Cell {
+struct Mine: PenaltyCell {
     let location: GridLocation
-
+    var guaranteesHit: Bool
+    let penaltyText: String
+    
+    init(location: GridLocation) {
+        self.location = location
+        self.guaranteesHit = false
+        self.penaltyText = "Yikes!"
+    }
 }
 
 // TODO: Adopt and implement the PenaltyCell protocol
-struct SeaMonster: Cell {
+struct SeaMonster: PenaltyCell {
     let location: GridLocation
+    var guaranteesHit: Bool
+    let penaltyText: String
+    
+    init(location: GridLocation) {
+        self.location = location
+        self.guaranteesHit = true
+        self.penaltyText = "Chomp!"
+    }
 }
 
 class ControlCenter {
